@@ -5,11 +5,13 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length = 10)
     email = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
     location = models.CharField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
 class Vendor(models.Model):
+    market = models.ForeignKey('Market', on_delete=models.CASCADE)# will need null-false later
     vendor_name = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -43,6 +45,7 @@ class Market(models.Model):
 class Preorder(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False)
     item = models.ManyToManyField(Item, through='PreorderItem')
+    ready = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -52,4 +55,3 @@ class PreorderItem(models.Model):
     quantity = models.IntegerField(default=1)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
