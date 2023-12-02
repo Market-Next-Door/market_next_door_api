@@ -10,6 +10,9 @@ class Customer(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.first_name + " " + self.last_name
+
 class Vendor(models.Model):
     market = models.ForeignKey('Market', on_delete=models.CASCADE)# will need null-false later
     vendor_name = models.CharField(max_length=50)
@@ -20,6 +23,9 @@ class Vendor(models.Model):
     location = models.CharField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.vendor_name
 
 class Item(models.Model):
     item_name = models.CharField(max_length=50)
@@ -33,6 +39,9 @@ class Item(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # image = models.ImageField(upload_to='images/', null=True, blank=True) add image here 
 
+    def __str__(self):
+        return self.item_name
+
 class Market(models.Model):
     market_name = models.CharField(max_length=50)
     location = models.CharField(max_length =100)
@@ -41,6 +50,9 @@ class Market(models.Model):
     enddate = models.DateField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.market_name
 
 class Preorder(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False)
