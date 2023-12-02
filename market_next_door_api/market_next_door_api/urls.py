@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from market_next_door_api import views
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 urlpatterns = [
+    path('customers/', views.customer_list),
+    path('customers/<int:id>', views.customer_details),
     path('admin/', admin.site.urls),
 ]
