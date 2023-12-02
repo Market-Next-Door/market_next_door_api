@@ -30,3 +30,8 @@ class ItemSerializer(serializers.ModelSerializer):
       }
     }
     return data
+
+class VendorSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Vendor
+    fields = ['id', 'market', 'vendor_name', 'first_name', 'last_name', 'email', 'location']
