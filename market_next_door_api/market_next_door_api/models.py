@@ -14,7 +14,7 @@ class Customer(models.Model):
         return self.first_name + " " + self.last_name
 
 class Vendor(models.Model):
-    market = models.ForeignKey('Market', on_delete=models.CASCADE)# will need null-false later
+    market = models.ForeignKey('Market', on_delete=models.CASCADE, null=True) # will need 'null=False' later
     vendor_name = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -37,7 +37,7 @@ class Item(models.Model):
     description = models.TextField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # image = models.ImageField(upload_to='images/', null=True, blank=True) add image here 
+    image = models.ImageField(upload_to='files/images', null=True, blank=True) 
 
     def __str__(self):
         return self.item_name
