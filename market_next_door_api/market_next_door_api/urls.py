@@ -29,5 +29,7 @@ urlpatterns = [
     path('vendors/<int:id>/', views.vendor_details),
     path('vendors/<int:vendor_id>/items/', views.vendor_item_list),
     path('vendors/<int:vendor_id>/items/<int:item_id>/', views.vendor_item_details),
+    path('markets/', views.market_list),
+    path('markets/<int:id>', views.market_details),
     path('admin/', admin.site.urls),
 ]
