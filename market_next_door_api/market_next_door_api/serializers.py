@@ -30,8 +30,30 @@ class ItemSerializer(serializers.ModelSerializer):
       }
     }
     return data
-
+  
+# Vendors
 class VendorSerializer(serializers.ModelSerializer):
   class Meta:
     model = Vendor
     fields = ['id', 'market', 'vendor_name', 'first_name', 'last_name', 'email', 'location']
+
+# Markets
+class MarketSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Market
+    fields = ['id', 'market_name', 'location', 'details', 'start_date', 'end_date']
+
+  def to_representation(self, instance):
+    representation = super().to_representation(instance)
+    data = {
+      "id": representation['id'],
+      "type": "market",
+      "attributes": { 
+        "market_name": representation['market_name'], 
+        "location": representation['location'], 
+        "details": representation['details'], 
+        "start_date": representation['start_date'], 
+        "end_date": representation['end_date']
+      }
+    }
+    return data
