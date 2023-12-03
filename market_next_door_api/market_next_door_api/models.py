@@ -46,8 +46,8 @@ class Market(models.Model):
     market_name = models.CharField(max_length=50)
     location = models.CharField(max_length =100)
     details = models.CharField(max_length=100)
-    startdate = models.DateField(null=True)
-    enddate = models.DateField(null=True)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
