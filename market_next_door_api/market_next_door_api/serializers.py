@@ -5,55 +5,28 @@ from .models import *
 class CustomerSerializer(serializers.ModelSerializer):
   class Meta:
     model = Customer
-    fields = ['id', 'first_name', 'last_name', 'phone', 'email', 'location']
+    fields = ['id', 'first_name', 'last_name', 'phone', 'email', 'location', 'date_created', 'updated_at']
 
 # Items
 class ItemSerializer(serializers.ModelSerializer):
   class Meta:
     model = Item
-    fields = ['id', 'item_name', 'vendor', 'price', 'size', 'quantity', 'availability', 'description', 'image']
-
-  def to_representation(self, instance):
-    representation = super().to_representation(instance)
-    data = {
-      "id": representation['id'],
-      "type": "item",
-      "attributes": {
-        "item_name": representation['item_name'],
-        "vendor": representation['vendor'],
-        "price": representation['price'],
-        "size": representation['size'],
-        "quantity": representation['quantity'],
-        "availability": representation['availability'],
-        "description": representation['description'],
-        "image": representation['image']
-      }
-    }
-    return data
+    fields = ['id', 'item_name', 'vendor', 'price', 'size', 'quantity', 'availability', 'description', 'image', 'date_created', 'updated_at']
   
 # Vendors
 class VendorSerializer(serializers.ModelSerializer):
   class Meta:
     model = Vendor
-    fields = ['id', 'market', 'vendor_name', 'first_name', 'last_name', 'email', 'location']
+    fields = ['id', 'market', 'vendor_name', 'first_name', 'last_name', 'email', 'location', 'date_created', 'updated_at']
 
 # Markets
 class MarketSerializer(serializers.ModelSerializer):
   class Meta:
     model = Market
-    fields = ['id', 'market_name', 'location', 'details', 'start_date', 'end_date']
+    fields = ['id', 'market_name', 'location', 'details', 'start_date', 'end_date', 'date_created', 'updated_at']
 
-  def to_representation(self, instance):
-    representation = super().to_representation(instance)
-    data = {
-      "id": representation['id'],
-      "type": "market",
-      "attributes": { 
-        "market_name": representation['market_name'], 
-        "location": representation['location'], 
-        "details": representation['details'], 
-        "start_date": representation['start_date'], 
-        "end_date": representation['end_date']
-      }
-    }
-    return data
+# Preorders
+class PreorderSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Preorder
+    fields = ['id', 'customer', 'item', 'ready', 'date_created', 'updated_at']
