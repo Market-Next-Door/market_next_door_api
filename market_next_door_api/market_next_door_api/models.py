@@ -1,5 +1,17 @@
 from django.db import models
 
+class Market(models.Model):
+    market_name = models.CharField(max_length=50)
+    location = models.CharField(max_length =100)
+    details = models.CharField(max_length=100)
+    start_date = models.DateField(null=True)
+    end_date = models.DateField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.market_name
+
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -14,10 +26,11 @@ class Customer(models.Model):
         return self.first_name + " " + self.last_name
 
 class Vendor(models.Model):
-    market = models.ForeignKey('Market', on_delete=models.CASCADE, null=True) # will need 'null=False' later
+    market = models.ManyToManyField('Market', null=True) # will need 'null=False' later
     vendor_name = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
+    phone = models.CharField(max_length=12, null=True)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
     location = models.CharField(max_length=255)
@@ -31,8 +44,8 @@ class Item(models.Model):
     item_name = models.CharField(max_length=50)
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, null=False)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    size = models.IntegerField(null=True)
-    quantity = models.IntegerField(default=1)
+    size = models.CharField(max_length=25, null=True)
+    quantity = models.IntegerField(default=1, null=False)
     availability = models.BooleanField(default=False)
     description = models.TextField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -41,18 +54,6 @@ class Item(models.Model):
 
     def __str__(self):
         return self.item_name
-
-class Market(models.Model):
-    market_name = models.CharField(max_length=50)
-    location = models.CharField(max_length =100)
-    details = models.CharField(max_length=100)
-    start_date = models.DateField(null=True)
-    end_date = models.DateField(null=True)
-    date_created = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.market_name
 
 class Preorder(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False)
