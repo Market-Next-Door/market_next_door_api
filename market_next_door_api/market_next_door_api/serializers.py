@@ -41,16 +41,3 @@ class PreorderSerializer(serializers.ModelSerializer):
   class Meta:
     model = Preorder
     fields = ['id', 'customer', 'item', 'ready']
-  
-  def to_representation(self, instance):
-    representation = super().to_representation(instance)
-    data = {
-      "id": representation['id'],
-      "type": "preorder",
-      "attributes": {
-        "customer": representation['customer'],
-        "item": representation['item'],
-        "ready": representation['ready']
-      }
-    }
-    return data
