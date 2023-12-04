@@ -29,7 +29,7 @@ jobs:
             python -m venv .venv
             . .venv/bin/activate
             /home/circleci/project/.venv/bin/python -m pip install --upgrade pip
-            pip install -r market_next_door_api/requirements.txt
+            pip install -r requirements.txt
       - run:
           name: "Run tests"
           command: |
