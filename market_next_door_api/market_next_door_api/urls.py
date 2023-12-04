@@ -21,15 +21,34 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-    path('customers/', views.customer_list),
-    path('customers/<int:id>/', views.customer_details),
-    path('items/', views.item_list),
-    path('items/<int:id>/', views.item_details),
-    path('vendors/', views.vendor_list),
-    path('vendors/<int:id>/', views.vendor_details),
-    path('vendors/<int:vendor_id>/items/', views.vendor_item_list),
-    path('vendors/<int:vendor_id>/items/<int:item_id>/', views.vendor_item_details),
     path('markets/', views.market_list),
-    path('markets/<int:id>', views.market_details),
+    path('markets/<int:market_id>', views.market_details),
+    path('customers/', views.customer_list),
+    path('customers/<int:customer_id>/', views.customer_details),
+    path('vendors/', views.vendor_list),
+    path('vendors/<int:vendor_id>/', views.vendor_details),
+    path('vendors/<int:vendor_id>/items/', views.item_list),
+    path('vendors/<int:vendor_id>/items/<int:item_id>/', views.item_details),
+    path('customers/<int:customer_id>/preorders', views.preorder_list),
+    path('customers/<int:customer_id>/preorders/<int:preorder_id>', views.preorder_details),
+    
+    # Cascading endpoints
+    # # vendors
+    # path('markets/<int:market_id>/vendors/', views.vendor_list),
+    # path('markets/<int:market_id>/vendors/<int:vendor_id>/', views.vendor_details),
+    # # items
+    # path('markets/<int:market_id>/vendors/<int:vendor_id>/items/', views.vendor_item_list),
+    # path('markets/<int:market_id>/vendors/<int:vendor_id>/items/<int:item_id>/', views.vendor_item_details),
+    # # customers
+    # path('markets/<int:market_id>/customers/', views.customer_list),
+    # path('markets/<int:market_id>/customers/<int:customer_id>/', views.customer_details),
+    # # preorders
+    # path('markets/<int:market_id>/customers/<int:customer_id>/preorders/', views.customer_preorder_list),
+    # path('markets/<int:market_id>/customers/<int:customer_id>/preorders/<int:preorder_id>/', views.customer_preorder_details),
+
     path('admin/', admin.site.urls),
 ]
+
+
+# crunchbase
+# builtin
