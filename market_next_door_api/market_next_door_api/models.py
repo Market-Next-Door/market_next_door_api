@@ -26,7 +26,7 @@ class Customer(models.Model):
         return self.first_name + " " + self.last_name
 
 class Vendor(models.Model):
-    market = models.ManyToManyField('Market', null=True) # will need 'null=False' later
+    market = models.ForeignKey(Market, on_delete=models.CASCADE, null=True) # will need 'null=False' and to be ManyToManyField later
     vendor_name = models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
