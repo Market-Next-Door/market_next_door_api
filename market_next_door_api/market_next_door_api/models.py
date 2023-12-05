@@ -56,7 +56,9 @@ class Market(models.Model):
 
 class Preorder(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False)
+    vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, null=False)
     item = models.ManyToManyField(Item, through='PreorderItem')
+    quantity = models.IntegerField(default=1)
     ready = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
