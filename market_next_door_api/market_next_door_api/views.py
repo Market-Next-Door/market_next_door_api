@@ -6,20 +6,26 @@ from .serializers import *
 from .models import *
 
 
-# Customer CRUD functions
+# Customer CRUD functions (SRP)
 @api_view(['GET', 'POST']) 
 def customer_list(request):
 
   if request.method == 'GET':
-    customers = Customer.objects.all()
-    serializer = CustomerSerializer(customers, many=True)
-    return Response(serializer.data)
+    return get_customer_list(request)
   
   elif request.method == 'POST':
-    serializer = CustomerSerializer(data=request.data)
-    if serializer.is_valid():
-      serializer.save()
-      return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return create_customer(request)
+  
+def get_customer_list(request):
+  customers = Customer.objects.all()
+  serializer = CustomerSerializer(customers, many=True)
+  return Response(serializer.data)
+
+def create_customer(request):
+  serializer = CustomerSerializer(data=request.data)
+  if serializer.is_valid():
+    serializer.save()
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def customer_details(request, id):
@@ -30,20 +36,29 @@ def customer_details(request, id):
     return Response(status=status.HTTP_404_NOT_FOUND)
   
   if request.method == 'GET':
-    serializer = CustomerSerializer(customer)
-    return Response(serializer.data)
+    return get_one_customer(customer)
   
   elif request.method == 'PUT':
+    return update_one_customer(customer, request)
+  
+  elif request.method == 'DELETE':
+    return delete_customer(customer)
+  
+def get_one_customer(customer):
+  serializer = CustomerSerializer(customer)
+  return Response(serializer.data)
+
+def update_one_customer(customer, request):
     customer_data = CustomerSerializer(customer, data=request.data)
     if customer_data.is_valid():
       customer_data.save()
       return Response(customer_data.data)
     return Response(customer_data.errors, status=status.HTTP_400_BAD_REQUEST)
-  
-  elif request.method == 'DELETE':
-    customer.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
-  
+
+def delete_customer(customer):
+  customer.delete()
+  return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 # Item CRUD functions (SRP)
@@ -55,11 +70,11 @@ def item_list(request, vendor_id):
     return Response(status=status.HTTP_404_NOT_FOUND)
 
   if request.method == 'GET':
-    return get_item_list(request, vendor)
+    return get_vendor_item_list(request, vendor)
   elif request.method == 'POST':
     return create_item(request)
 
-def get_item_list(request, vendor):
+def get_vendor_item_list(request, vendor):
   items = Item.objects.filter(vendor=vendor)
   serializer = ItemSerializer(items, many=True)
   return Response(serializer.data)

@@ -17,6 +17,25 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  
+  run-tests:
+    docker:
+      - image: circleci/python:3.10
+    steps:
+      - checkout
+      - run:
+          name: "Install requirements"
+          command: |
+            python -m venv .venv
+            . .venv/bin/activate
+            /home/circleci/project/.venv/bin/python -m pip install --upgrade pip
+            pip install -r requirements.txt
+      - run:
+          name: "Run tests"
+          command: |
+            . .venv/bin/activate
+            cd market_next_door_api
+            python3 manage.py test market_next_door_api.tests
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -24,3 +43,4 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - run-tests

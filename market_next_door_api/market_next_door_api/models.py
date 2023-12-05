@@ -15,10 +15,10 @@ class Market(models.Model):
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length = 10)
+    phone = models.CharField(max_length = 10, null=True)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
-    location = models.CharField(max_length=255)
+    location = models.CharField(max_length=255, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -33,7 +33,7 @@ class Vendor(models.Model):
     phone = models.CharField(max_length=12, null=True)
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
-    location = models.CharField(max_length=255)
+    location = models.CharField(max_length=255, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
