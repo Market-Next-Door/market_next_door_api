@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
-    'market_next_door_api.market_next_door_api',
+    'market_next_door_api',
     'rest_framework',
 
     'django.contrib.admin',
@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'market_next_door_api.market_next_door_api.urls'
+ROOT_URLCONF = 'market_next_door_api.urls'
 
 TEMPLATES = [
     {

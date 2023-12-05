@@ -14,6 +14,6 @@ print(sys.path)
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'market_next_door_api.market_next_door_api.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'market_next_door_api.settings')
 
 application = get_wsgi_application()
