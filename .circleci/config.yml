@@ -30,9 +30,7 @@ jobs:
             . .venv/bin/activate
             /home/circleci/project/.venv/bin/python -m pip install --upgrade pip
             pip install -r requirements.txt
-      - run:
-          name: "Set DJANGO_SETTINGS_MODULE"
-          command: echo "export DJANGO_SETTINGS_MODULE=market_next_door_api.settings" >> $BASH_ENV
+
       - run:
           name: "Run tests"
           command: |
