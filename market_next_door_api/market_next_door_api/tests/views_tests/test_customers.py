@@ -1,7 +1,7 @@
 from rest_framework.test import APITestCase
 from django.urls import reverse
 from rest_framework import status
-from market_next_door_api.models import *
+from market_next_door_api.market_next_door_api.models import *
 import pdb
 
 class CustomerTestCase(APITestCase):
