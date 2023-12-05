@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-ROOT_URLCONF = 'market_next_door_api.urls'
+ROOT_URLCONF = 'market_next_door_api.market_next_door_api.urls'
 
 TEMPLATES = [
     {
