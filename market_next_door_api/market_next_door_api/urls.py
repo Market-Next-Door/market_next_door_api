@@ -22,15 +22,15 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('markets/', views.market_list),
-    path('markets/<int:market_id>', views.market_details),
+    path('markets/<int:market_id>/', views.market_details),
     path('customers/', views.customer_list),
     path('customers/<int:customer_id>/', views.customer_details),
     path('vendors/', views.vendor_list),
     path('vendors/<int:vendor_id>/', views.vendor_details),
     path('vendors/<int:vendor_id>/items/', views.item_list),
     path('vendors/<int:vendor_id>/items/<int:item_id>/', views.item_details),
-    path('customers/<int:customer_id>/preorders', views.preorder_list),
-    path('customers/<int:customer_id>/preorders/<int:preorder_id>', views.preorder_details),
+    path('customers/<int:customer_id>/preorders/', views.preorder_list),
+    path('customers/<int:customer_id>/preorders/<int:preorder_id>/', views.preorder_details),
     
     # Cascading endpoints
     # # vendors
@@ -48,7 +48,3 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 ]
-
-
-# crunchbase
-# builtin
