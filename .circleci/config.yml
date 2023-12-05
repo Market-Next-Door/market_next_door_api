@@ -31,11 +31,14 @@ jobs:
             /home/circleci/project/.venv/bin/python -m pip install --upgrade pip
             pip install -r requirements.txt
       - run:
+          name: "Set DJANGO_SETTINGS_MODULE"
+          command: echo "export DJANGO_SETTINGS_MODULE=market_next_door_api.settings" >> $BASH_ENV
+      - run:
           name: "Run tests"
           command: |
             . .venv/bin/activate
             cd market_next_door_api
-            python3 manage.py test market_next_door_api/market_next_door_api.tests
+            python3 manage.py test market_next_door_api.tests
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
