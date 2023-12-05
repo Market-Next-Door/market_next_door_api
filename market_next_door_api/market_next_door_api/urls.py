@@ -21,16 +21,16 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-    path('markets/', views.market_list),
-    path('markets/<int:market_id>/', views.market_details),
-    path('customers/', views.customer_list),
-    path('customers/<int:customer_id>/', views.customer_details),
-    path('vendors/', views.vendor_list),
-    path('vendors/<int:vendor_id>/', views.vendor_details),
-    path('vendors/<int:vendor_id>/items/', views.item_list),
-    path('vendors/<int:vendor_id>/items/<int:item_id>/', views.item_details),
-    path('customers/<int:customer_id>/preorders/', views.preorder_list),
-    path('customers/<int:customer_id>/preorders/<int:preorder_id>/', views.preorder_details),
+    path('markets/', views.market_list, name='market_list'),
+    path('markets/<int:market_id>/', views.market_details, name='market_details'),
+    path('customers/', views.customer_list, name='customer_list'),
+    path('customers/<int:customer_id>/', views.customer_details, name='customer_details'),
+    path('vendors/', views.vendor_list, name='vendor_list'),
+    path('vendors/<int:vendor_id>/', views.vendor_details, name='vendor_details'),
+    path('vendors/<int:vendor_id>/items/', views.item_list, name='item_list'),
+    path('vendors/<int:vendor_id>/items/<int:item_id>/', views.item_details, name='item_details'),
+    path('customers/<int:customer_id>/preorders/', views.preorder_list, name='preorder_list'),
+    path('customers/<int:customer_id>/preorders/<int:preorder_id>/', views.preorder_details, name='preorder_details'),
     
     # Cascading endpoints
     # # vendors
