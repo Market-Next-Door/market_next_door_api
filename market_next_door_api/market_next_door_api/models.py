@@ -17,7 +17,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length = 10, null=True)
     email = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50, null=False)
     location = models.CharField(max_length=255, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -32,7 +32,7 @@ class Vendor(models.Model):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=12, null=True)
     email = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=50, null=False)
     location = models.CharField(max_length=255, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -57,14 +57,15 @@ class Item(models.Model):
 
 class Preorder(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=False)
-    item = models.ManyToManyField(Item, through='PreorderItem')
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, null=False)
+    quantity_requested = models.IntegerField(default=1)
     ready = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class PreorderItem(models.Model):
-    preorder = models.ForeignKey(Preorder, on_delete=models.CASCADE, null=False)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE, null=False)
-    quantity = models.IntegerField(default=1)
-    date_created = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# class PreorderItem(models.Model):
+#     preorder = models.ForeignKey(Preorder, on_delete=models.CASCADE, null=False)
+#     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=False)
+#     quantity = models.IntegerField(default=1)
+#     date_created = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
