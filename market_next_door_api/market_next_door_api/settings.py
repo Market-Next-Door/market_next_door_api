@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'market_next_door_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7qmstemeigg3j',
+        'USER': 'vluxnhwlvcgwpb',
+        'PASSWORD': '0d4fe0a86cebef300988f11ffb19720ad9683d46391275f52f76fd427c84bffa',
+        'HOST': 'ec2-54-211-177-159.compute-1.amazonaws.com',  
+        'PORT': '5432',        
     }
 }
 
