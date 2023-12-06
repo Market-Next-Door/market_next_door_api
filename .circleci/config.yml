@@ -35,7 +35,6 @@ jobs:
           name: "Run tests"
           command: |
             . .venv/bin/activate
-            cd market_next_door_api
             python3 manage.py test market_next_door_api.tests
 
 # Orchestrate jobs using workflows
