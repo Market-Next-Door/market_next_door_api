@@ -15,7 +15,8 @@ class VendorSerializer(serializers.ModelSerializer):
 
 # Items
 class ItemSerializer(serializers.ModelSerializer):
-  vendor = VendorSerializer(read_only=True)
+  vendor = serializers.PrimaryKeyRelatedField(queryset=Vendor.objects.all())
+  # vendor = VendorSerializer(read_only=True)
 
   class Meta:
     model = Item
