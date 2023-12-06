@@ -12,10 +12,6 @@ jobs:
       - image: cimg/base:stable
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
-
-    environment:
-      DATABASE_URL: postgres://vluxnhwlvcgwpb:0d4fe0a86cebef300988f11ffb19720ad9683d46391275f52f76fd427c84bffa@ec2-54-211-177-159.compute-1.amazonaws.com:5432/d7qmstemeigg3j
-
     steps:
       - checkout
       - run:
