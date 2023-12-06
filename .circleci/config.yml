@@ -12,6 +12,8 @@ jobs:
       - image: cimg/base:stable
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
+    environment:
+      CIRCLECI: 'true'
     steps:
       - checkout
       - run:
